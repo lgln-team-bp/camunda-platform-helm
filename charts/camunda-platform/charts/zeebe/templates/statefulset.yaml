@@ -16,6 +16,11 @@ spec:
   updateStrategy:
     type: RollingUpdate
   podManagementPolicy: Parallel
+  {{ if .Values.pvcPersitentVolumeClamePolicy.enabled }}
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: {{ .Values.pvcPersitentVolumeClamePolicy.whenDeleted }}
+    whenScaled: {{ .Values.pvcPersitentVolumeClamePolicy.whenDeleted }}
+  {{ end }}
   template:
     metadata:
       labels:
